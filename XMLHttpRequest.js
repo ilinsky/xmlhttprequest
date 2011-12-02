@@ -31,18 +31,18 @@
 		this._object  = oXMLHttpRequest && !bIE7 ? new oXMLHttpRequest : new window.ActiveXObject("Microsoft.XMLHTTP");
 		this._listeners = [];
 	}
-	
+
 	// Constructor
 	function cXMLHttpRequest() {
 		return new fXMLHttpRequest;
 	}
 	cXMLHttpRequest.prototype = fXMLHttpRequest.prototype;
-	
+
 	// BUGFIX: Firefox with Firebug installed would break pages if not executed
 	if (bGecko && oXMLHttpRequest.wrapped) {
 		cXMLHttpRequest.wrapped = oXMLHttpRequest.wrapped;
 	}
-	
+
 	// Constants
 	cXMLHttpRequest.UNSENT            = 0;
 	cXMLHttpRequest.OPENED            = 1;
@@ -68,7 +68,7 @@
 	cXMLHttpRequest.onopen              = null;
 	cXMLHttpRequest.onsend              = null;
 	cXMLHttpRequest.onabort             = null;
-	
+
 	// Public Methods
 	cXMLHttpRequest.prototype.open  = function(sMethod, sUrl, bAsync, sUser, sPassword) {
 		// Delete headers, required when object is reused
@@ -232,7 +232,7 @@
 			}
 		};
 	};
-	
+
 	cXMLHttpRequest.prototype.send = function(vData) {
 		// Add method sniffer
 		if (cXMLHttpRequest.onsend) {
@@ -248,8 +248,8 @@
 		// BUGFIX: Gecko - fails sending Element (this is up to the implementation either to standard)
 		if (vData && vData.nodeType) {
 			vData = window.XMLSerializer ? new window.XMLSerializer().serializeToString(vData) : vData.xml;
-			if (!oRequest._headers["Content-Type"]) {
-				oRequest._object.setRequestHeader("Content-Type", "application/xml");
+			if (!this._headers["Content-Type"]) {
+				this._object.setRequestHeader("Content-Type", "application/xml");
 			}
 		}
 
@@ -265,7 +265,7 @@
 		 * }
 		 */
 	};
-	
+
 	cXMLHttpRequest.prototype.abort = function() {
 		// Add method sniffer
 		if (cXMLHttpRequest.onabort) {
@@ -373,7 +373,7 @@
 	cXMLHttpRequest.toString  = function() {
 		return '[' + "XMLHttpRequest" + ']';
 	};
-	
+
 	/**
 	 * // Queue manager
 	 * var oQueuePending = {"CRITICAL":[],"HIGH":[],"NORMAL":[],"LOW":[],"LOWEST":[]},
@@ -383,7 +383,7 @@
 	 * 	//
 	 * 	setTimeout(fQueue_process);
 	 * };
-	 * 
+	 *
 	 * function fQueue_remove(oRequest) {
 	 * 	for (var nIndex = 0, bFound = false; nIndex < aQueueRunning.length; nIndex++)
 	 * 	if (bFound) {
@@ -393,16 +393,16 @@
 	 * 			bFound  = true;
 	 * 		}
 	 * }
-	 * 		
+	 *
 	 * 	if (bFound) {
 	 * 		aQueueRunning.length--;
 	 * 	}
-	 * 
-	 * 
+	 *
+	 *
 	 * 	//
 	 * 	setTimeout(fQueue_process);
 	 * };
-	 * 
+	 *
 	 * function fQueue_process() {
 	 * if (aQueueRunning.length < 6) {
 	 * for (var sPriority in oQueuePending) {
@@ -442,7 +442,7 @@
 			}
 		}
 	}
-	
+
 	function fReadyStateChange(oRequest) {
 		// Sniffing code
 		if (cXMLHttpRequest.onreadystatechange){
@@ -490,7 +490,7 @@
 		// BUGFIX: IE - memory leak (on-page leak)
 		oRequest._object.onreadystatechange = new window.Function;
 	}
-	
+
 	// Internet Explorer 5.0 (missing apply)
 	if (!window.Function.prototype.apply) {
 		window.Function.prototype.apply = function(oRequest, oArguments) {
@@ -502,7 +502,7 @@
 			delete oRequest.__func;
 		};
 	}
-	
+
 	// Register new object with window
 	window.XMLHttpRequest = cXMLHttpRequest;
 
