@@ -78,6 +78,15 @@
 
 	// Public Methods
 	cXMLHttpRequest.prototype.open  = function(sMethod, sUrl, bAsync, sUser, sPassword) {
+		// http://www.w3.org/TR/XMLHttpRequest/#the-open-method
+		var backlist = sMethod.toLowerCase();
+		if((backlist == "connect") || (backlist == "trace") || (backlist == "track")){
+			// Using a generic error and an int - not too sure all browsers support correctly 
+			// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#securityerror, so, this is safer
+			// XXX should do better than that, but this is OT to XHR.
+			throw new Error(18);
+		}
+
 		// Delete headers, required when object is reused
 		delete this._headers;
 
