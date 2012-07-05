@@ -50,6 +50,13 @@
 	cXMLHttpRequest.LOADING           = 3;
 	cXMLHttpRequest.DONE              = 4;
 
+	// Interface level constants
+	cXMLHttpRequest.prototype.UNSENT            = cXMLHttpRequest.UNSENT;
+	cXMLHttpRequest.prototype.OPENED            = cXMLHttpRequest.OPENED;
+	cXMLHttpRequest.prototype.HEADERS_RECEIVED  = cXMLHttpRequest.HEADERS_RECEIVED;
+	cXMLHttpRequest.prototype.LOADING           = cXMLHttpRequest.LOADING;
+	cXMLHttpRequest.prototype.DONE              = cXMLHttpRequest.DONE;
+
 	// Public Properties
 	cXMLHttpRequest.prototype.readyState    = cXMLHttpRequest.UNSENT;
 	cXMLHttpRequest.prototype.responseText  = '';
