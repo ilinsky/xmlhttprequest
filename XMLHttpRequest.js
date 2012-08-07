@@ -26,7 +26,7 @@
 	var bIE     = window.document.all && !window.opera;
 	var bIE7    = bIE && window.navigator.userAgent.match(/MSIE 7.0/);
 
-	// Enables "XMLHttpRequest()" call next to "new XMLHttpReques()"
+	// Enables "XMLHttpRequest()" call next to "new XMLHttpRequest()"
 	function fXMLHttpRequest() {
 		this._object  = oXMLHttpRequest && !bIE7 ? new oXMLHttpRequest : new window.ActiveXObject("Microsoft.XMLHTTP");
 		this._listeners = [];
@@ -81,7 +81,7 @@
 		// http://www.w3.org/TR/XMLHttpRequest/#the-open-method
 		var backlist = sMethod.toLowerCase();
 		if((backlist == "connect") || (backlist == "trace") || (backlist == "track")){
-			// Using a generic error and an int - not too sure all browsers support correctly 
+			// Using a generic error and an int - not too sure all browsers support correctly
 			// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#securityerror, so, this is safer
 			// XXX should do better than that, but this is OT to XHR.
 			throw new Error(18);
