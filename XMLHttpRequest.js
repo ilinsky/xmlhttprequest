@@ -467,7 +467,7 @@
 			'type':       "readystatechange",
 			'bubbles':    false,
 			'cancelable': false,
-			'timeStamp':  new Date + 0
+			'timeStamp':  new Date().getTime()
 		});
 	}
 
