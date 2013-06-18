@@ -1,4 +1,4 @@
-XMLHttpRequest 1.0 implementation objectives
+Scope of implementation
 =====
 
 1. Deliver unobtrusive standard-compliant cross-browser implementation of the
@@ -17,11 +17,11 @@ How To Use
 </head>
 ```
 
-Statement regarding support of XMLHttpRequest 2 features
+XMLHttpRequest 2 features
 =====
 
 The library does not and will not add support for any features found in [XMLHttpRequest 2][2] since
-it is not possible to provide complete fallback implementation in older Internet Explorer, browser
+it is not possible to provide complete fallback implementation in older Internet Explorer browser
 for which this library was primarily developed. If you use this library, I recommend starting adding
 conditional HTML comments to limit exposure of the library only to browsers where it is really needed.
 
