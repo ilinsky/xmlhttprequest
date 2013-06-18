@@ -484,7 +484,7 @@
 
 		// Check if there is no error in document
 		if (oDocument){
-			if ((bIE && oDocument.parseError !== 0) || !oDocument.documentElement || (oDocument.documentElement && oDocument.documentElement.tagName == "parsererror")) {
+			if ((bIE && oDocument.parseError != 0) || !oDocument.documentElement || (oDocument.documentElement && oDocument.documentElement.tagName == "parsererror")) {
 				return null;
 			}
 		}
