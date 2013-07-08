@@ -17,6 +17,10 @@
 */
 
 (function () {
+
+	// Save reference to earlier defined object implementation (if any)
+	var oXMLHttpRequest = window.XMLHttpRequest;
+	
 	// Define on browser type
 	var bGecko  = !!window.controllers;
 	var bIE     = !!window.document.namespaces;
@@ -24,7 +28,15 @@
 
 	// Enables "XMLHttpRequest()" call next to "new XMLHttpRequest()"
 	function fXMLHttpRequest() {
-		this._object  = window.XMLHttpRequest && !bIE7 ? new window.XMLHttpRequest() : new window.ActiveXObject("Microsoft.XMLHTTP");
+		if (!window.XMLHttpRequest || bIE7) {
+			this._object = new window.ActiveXObject("Microsoft.XMLHTTP");
+		} // only use initial XHR object internally if current reference to XHR is our normalized replacement 
+		else if (window.XMLHttpRequest.isNormalizedObject) {
+			this._object = new oXMLHttpRequest();
+		} // otherwise use whatever is currently referenced by XMLHttpRequest
+		else {
+			this._object = new window.XMLHttpRequest();		
+		}
 		this._listeners = [];
 	}
 
@@ -36,8 +48,11 @@
 
 	// BUGFIX: Firefox with Firebug installed would break pages if not executed
 	if (bGecko && oXMLHttpRequest.wrapped) {
-		cXMLHttpRequest.wrapped = window.XMLHttpRequest.wrapped;
+		cXMLHttpRequest.wrapped = oXMLHttpRequest.wrapped;
 	}
+	
+	// Marker to be able to easily identify our object
+	cXMLHttpRequest.isNormalizedObject = true;
 
 	// Constants
 	cXMLHttpRequest.UNSENT            = 0;
