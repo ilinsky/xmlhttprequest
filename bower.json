@@ -1,0 +1,25 @@
+{
+  "name": "xmlhttprequest",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ilinsky/xmlhttprequest",
+  "authors": [
+    "Sergey Ilinsky <sergey@ilinsky.com>"
+  ],
+  "description": "Polyfill for XMLHttpRequest 1.0",
+  "main": "XMLHttpRequest.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "xmlhttprequest",
+    "polyfill"
+  ],
+  "license": "LGPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
